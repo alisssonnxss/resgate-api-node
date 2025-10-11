@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 3000;
 // Você precisa de uma "lista negra" de códigos usados. 
 // Em produção, isso seria um banco de dados (MongoDB, PostgreSQL, etc.).
 // Para o teste inicial no Render, usamos um array simples (não persistente).
-const usedCodes = ["FFCP001", "FFCP002", "TESTE123"]; 
+const usedCodes = ["Alissonx@2020", "brizax@2020"]; 
 const validCodes = [
     "B9R3K7L1", "4A8Z2V6T", "C5X9W3Q7", "J2H6N1M5", "P8G4D0F2",
     "D1F5H9J3", "K7L0M4N8", "Q3R7S1T5", "V9W2X6Y0", "Z4A8B2C6",
@@ -80,3 +80,4 @@ app.listen(PORT, () => {
     console.log(`Server rodando na porta ${PORT}`);
 
 });
+
