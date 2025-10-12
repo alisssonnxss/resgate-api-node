@@ -111,7 +111,7 @@ const validCodes = [
 let usedCodes = [];
 
 // CÓDIGO DE ACESSO MESTRE (MANTENHA ISSO SECRETO!)
-const MASTER_CODE = "CODIGO_SECRETO_ADMIN"; 
+const MASTER_CODE = "CODIGO998052"; 
 
 
 // --- ROTA PRINCIPAL DE LOGIN ---
@@ -170,6 +170,7 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);
 });
+
 
 
 
