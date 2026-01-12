@@ -58,10 +58,10 @@ let usedCodesHistory = [];
 app.post('/api/validate', (req, res) => {
     const { code } = req.body;
     const cleanCode = code ? code.trim().toUpperCase() : "";
-    if (!codesDB[cleanCode]) return res.status(400).json({ success: false, message: 'CÓDIGO FALSO OU INVÁLIDO!' });
+    if (!codesDB[cleanCode]) return res.status(400).json({ success: false, message: 'INVÁLIDO' });
     
     const jaUsado = usedCodesHistory.find(item => item.code === cleanCode);
-    if (jaUsado) return res.status(400).json({ success: false, message: `ERRO: Já resgatado por ${jaUsado.user}` });
+    if (jaUsado) return res.status(400).json({ success: false, message: `USADO POR ${jaUsado.user}` });
 
     res.json({ success: true, reward: codesDB[cleanCode] });
 });
@@ -69,35 +69,27 @@ app.post('/api/validate', (req, res) => {
 app.post('/api/register', (req, res) => {
     const { code, name, id } = req.body;
     const cleanCode = code ? code.trim().toUpperCase() : "";
-    
-    // Captura Data curta para a trava diária e Completa para o log
     const dataCompleta = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
     const dataCurta = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 
-    // Ajustado para 'id' e 'data' para funcionar com o seu INDEX.html
-    usedCodesHistory.push({
-        code: cleanCode,
-        user: name,
-        id: id, 
-        reward: codesDB[cleanCode],
-        data: name === "RESGATANDO..." ? "" : dataCurta, // Data curta ajuda na trava diária
-        hora: dataCompleta
-    });
+    const index = usedCodesHistory.findIndex(item => item.code === cleanCode);
+    const logEntry = { code: cleanCode, user: name, id, reward: codesDB[cleanCode], data: name === "RESGATANDO..." ? "" : dataCurta, hora: dataCompleta };
+
+    if (index !== -1) usedCodesHistory[index] = logEntry;
+    else usedCodesHistory.push(logEntry);
+
     res.json({ success: true });
 });
 
-app.get('/api/public/history', (req, res) => {
-    res.json(usedCodesHistory);
-});
+app.get('/api/public/history', (req, res) => res.json(usedCodesHistory));
 
-// LINK PARA RESETAR O HISTÓRICO: seu-site.com/api/reset/4L1550NX-X792-B488
 app.get('/api/reset/:tag', (req, res) => {
     if (req.params.tag === OWNER_TAG) {
         usedCodesHistory = [];
-        return res.send("<h1>HISTÓRICO RESETADO COM SUCESSO! ✅</h1>");
+        return res.send("RESETADO");
     }
-    res.status(403).send("<h1>ACESSO NEGADO ❌</h1>");
+    res.status(403).send("NEGADO");
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
+app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
