@@ -70,21 +70,33 @@ app.post('/api/register', (req, res) => {
     const { code, name, id } = req.body;
     const cleanCode = code ? code.trim().toUpperCase() : "";
     
-    // Captura Data e Hora formatada Brasil
-    const agora = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+    // Captura Data curta para a trava diária e Completa para o log
+    const dataCompleta = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+    const dataCurta = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 
+    // Ajustado para 'id' e 'data' para funcionar com o seu INDEX.html
     usedCodesHistory.push({
         code: cleanCode,
         user: name,
-        playerId: id,
+        id: id, 
         reward: codesDB[cleanCode],
-        data: agora // Salva "DD/MM/AAAA HH:MM:SS"
+        data: name === "RESGATANDO..." ? "" : dataCurta, // Data curta ajuda na trava diária
+        hora: dataCompleta
     });
     res.json({ success: true });
 });
 
 app.get('/api/public/history', (req, res) => {
     res.json(usedCodesHistory);
+});
+
+// LINK PARA RESETAR O HISTÓRICO: seu-site.com/api/reset/4L1550NX-X792-B488
+app.get('/api/reset/:tag', (req, res) => {
+    if (req.params.tag === OWNER_TAG) {
+        usedCodesHistory = [];
+        return res.send("<h1>HISTÓRICO RESETADO COM SUCESSO! ✅</h1>");
+    }
+    res.status(403).send("<h1>ACESSO NEGADO ❌</h1>");
 });
 
 const PORT = process.env.PORT || 3000;
