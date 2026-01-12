@@ -51,12 +51,11 @@ const codesDB = {
     "ALISSON-P55-X4M6-D22S": "Passe Booyah 💎"
 };
 
-let usedCodesHistory = []; // Usando array para facilitar a ordem
+let usedCodesHistory = [];
 
 app.post('/api/validate', (req, res) => {
     const { code } = req.body;
     const cleanCode = code ? code.trim().toUpperCase() : "";
-    
     if (!codesDB[cleanCode]) return res.status(400).json({ success: false, message: 'CÓDIGO FALSO OU INVÁLIDO!' });
     
     const jaUsado = usedCodesHistory.find(item => item.code === cleanCode);
@@ -69,20 +68,22 @@ app.post('/api/register', (req, res) => {
     const { code, name, id } = req.body;
     const cleanCode = code ? code.trim().toUpperCase() : "";
     
+    // Captura Data e Hora formatada Brasil
+    const agora = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
+
     usedCodesHistory.push({
         code: cleanCode,
         user: name,
         playerId: id,
         reward: codesDB[cleanCode],
-        data: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
+        data: agora // Salva "DD/MM/AAAA HH:MM:SS"
     });
     res.json({ success: true });
 });
 
 app.get('/api/public/history', (req, res) => {
-    // Retorna a lista invertida (mais recentes primeiro)
-    res.json([...usedCodesHistory].reverse());
+    res.json(usedCodesHistory);
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`🚀 API Rodando - Canal: ${OWNER_TAG}`));
+app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
