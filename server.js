@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-// --- CONFIGURAÇÃO DE ACESSO (CORS) ATUALIZADA ---
-// Isso garante que o teu INDEX.html consiga falar com o Render sem bloqueios.
+// --- CONFIGURAÇÃO DE ACESSO (CORS) ---
 app.use(cors({
     origin: '*', 
     methods: ['GET', 'POST'],
@@ -14,9 +13,9 @@ app.use(cors({
 app.use(bodyParser.json());
 
 // --- NOME ESTILIZADO DO DONO ---
-const OWNER_TAG = "4L1550NX-X792-B488";
+const OWNER_TAG = "4L1550NX-X792-B488"; 
 
-// --- DATABASE DE 40 CÓDIGOS ULTRA-DIFÍCEIS ---
+// --- DATABASE DE 40 CÓDIGOS ---
 const codesDB = {
     // 🎫 20 Códigos de CODIGUIN DO MÊS
     "ALISSON-C0D-X9F2-K88P": "Codiguin do Mês 🎫",
@@ -63,14 +62,14 @@ const codesDB = {
     "ALISSON-P55-X4M6-D22S": "Passe Booyah 💎"
 };
 
-let usedCodesHistory = {};
+let usedCodesHistory = {}; 
 
 app.post('/api/validate', (req, res) => {
     const { code } = req.body;
     const cleanCode = code ? code.trim().toUpperCase() : "";
     
     if (!codesDB[cleanCode]) return res.status(400).json({ success: false, message: 'CÓDIGO FALSO OU INVÁLIDO!' });
-    if (usedCodesHistory[cleanCode]) return res.status(400).json({ success: false, message: `ERRO: Já resgatado em ${usedCodesHistory[cleanCode].data}` });
+    if (usedCodesHistory[cleanCode]) return res.status(400).json({ success: false, message: `ERRO: Já resgatado por ${usedCodesHistory[cleanCode].user}` });
 
     res.json({ success: true, reward: codesDB[cleanCode] });
 });
@@ -82,13 +81,19 @@ app.post('/api/register', (req, res) => {
     usedCodesHistory[cleanCode] = {
         user: name,
         playerId: id,
-        data: new Date().toLocaleString('pt-BR')
+        reward: codesDB[cleanCode],
+        data: new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' })
     };
     res.json({ success: true });
 });
 
+// Rota pública para a tabela do site
+app.get('/api/public/history', (req, res) => {
+    const historyArray = Object.values(usedCodesHistory).reverse();
+    res.json(historyArray);
+});
+
 app.get('/api/admin/history', (req, res) => res.json(usedCodesHistory));
 
-// Porta configurada para o Render (process.env.PORT) ou 3000 localmente
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 API Rodando - Canal: ${OWNER_TAG}`));
