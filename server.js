@@ -3,15 +3,22 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 
-app.use(cors());
+// --- CONFIGURAÇÃO DE ACESSO (CORS) ATUALIZADA ---
+// Isso garante que o teu INDEX.html consiga falar com o Render sem bloqueios.
+app.use(cors({
+    origin: '*', 
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type']
+}));
+
 app.use(bodyParser.json());
 
 // --- NOME ESTILIZADO DO DONO ---
-const OWNER_TAG = "4L1550NX-X792-B488"; 
+const OWNER_TAG = "4L1550NX-X792-B488";
 
 // --- DATABASE DE 40 CÓDIGOS ULTRA-DIFÍCEIS ---
 const codesDB = {
-    // 🎫 20 Códigos de CODIGUIN DO MÊS (Sufixos Aleatórios)
+    // 🎫 20 Códigos de CODIGUIN DO MÊS
     "ALISSON-C0D-X9F2-K88P": "Codiguin do Mês 🎫",
     "ALISSON-C0D-Z1B9-Q44W": "Codiguin do Mês 🎫",
     "ALISSON-C0D-L7V3-M00X": "Codiguin do Mês 🎫",
@@ -33,7 +40,7 @@ const codesDB = {
     "ALISSON-C0D-Z7N9-W55F": "Codiguin do Mês 🎫",
     "ALISSON-C0D-K3J1-T66M": "Codiguin do Mês 🎫",
 
-    // 💎 20 Códigos de PASSE BOOYAH (Sufixos Aleatórios)
+    // 💎 20 Códigos de PASSE BOOYAH
     "ALISSON-P55-E9R2-T00X": "Passe Booyah 💎",
     "ALISSON-P55-Q7W1-L33B": "Passe Booyah 💎",
     "ALISSON-P55-V4N8-K99Z": "Passe Booyah 💎",
@@ -56,7 +63,7 @@ const codesDB = {
     "ALISSON-P55-X4M6-D22S": "Passe Booyah 💎"
 };
 
-let usedCodesHistory = {}; 
+let usedCodesHistory = {};
 
 app.post('/api/validate', (req, res) => {
     const { code } = req.body;
@@ -82,4 +89,6 @@ app.post('/api/register', (req, res) => {
 
 app.get('/api/admin/history', (req, res) => res.json(usedCodesHistory));
 
-app.listen(3000, () => console.log(`🚀 API Rodando - Canal: ${OWNER_TAG}`));
+// Porta configurada para o Render (process.env.PORT) ou 3000 localmente
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 API Rodando - Canal: ${OWNER_TAG}`));
