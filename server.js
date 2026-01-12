@@ -1,176 +1,85 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-// Configurações Middleware
-app.use(cors()); // CRÍTICO: Permite requisições do seu Frontend no Netlify
+app.use(cors());
 app.use(bodyParser.json());
 
-// --- DADOS EM MEMÓRIA ---
+// --- NOME ESTILIZADO DO DONO ---
+const OWNER_TAG = "4L1550NX-X792-B488"; 
 
-// ⚠️ CÓDIGOS VÁLIDOS (SUA LISTA COMPLETA)
-const validCodes = [
-  "G2P8R-B5W9Z",
-  "J7L4F-T0X3H",
-  "C6M1K-V9A5D",
-  "H3Q9E-S7Y4U",
-  "Z4B0X-R6J1P",
-  "F1W5H-D8N2L",
-  "K9P3V-G0M7Z",
-  "A0R4S-C2T6Q",
-  "E5U7Y-J1B8D",
-  "L6X2Z-H3K9F",
-  "P7A1T-M4C5W",
-  "B8Q6D-Y0S2J",
-  "I3N9R-F5L7V",
-  "O4Z0G-U8X6K",
-  "V1H5J-Q9M3T",
-  "W0D2B-E4P6Y",
-  "M5L7N-I8R3O",
-  "T9F4A-X1S0C",
-  "D2J6K-V5B7H",
-  "S8G3U-Z9W1Q",
-  "Y0C7P-F4R2E",
-  "K1H8L-M6N0X",
-  "A3D9E-T7G5J",
-  "U4V0W-P1R3S",
-  "X2Y6Z-Q5B9C",
-  "L7M1N-K3H8J",
-  "O0P4Q-R2S6T",
-  "F5G9H-I1J3K",
-  "V6W2X-Y4Z8A",
-  "E3D7C-B9A5Z",
-  "P8Q0R-S2T6U",
-  "M4N8P-Q0R4S",
-  "T9V3W-X7Y1Z",
-  "H1J5K-L9M3N",
-  "B5C9D-E3F7G",
-  "R0S4T-U8V2W",
-  "Z7A1B-C5D9E",
-  "I2J6K-L0M4N",
-  "Q6R0S-T4U8V",
-  "W9X3Y-Z7A1B",
-  "G1H5I-J9K3L",
-  "O8P2Q-R6S0T",
-  "A7B1C-D5E9F",
-  "K4L8M-N2P6Q",
-  "U3V7W-X1Y5Z",
-  "B0C4D-E8F2G",
-  "T5U9V-W3X7Y",
-  "H6I0J-K4L8M",
-  "R9S3T-U7V1W",
-  "D1E5F-G9H3I",
-  "X0Y4Z-A8B2C",
-  "J5K9L-M3N7P",
-  "Q4R8S-T2U6V",
-  "C3D7E-F1G5H",
-  "M9N3P-Q7R1S",
-  "W2X6Y-Z0A4B",
-  "K8L2M-N6P0Q",
-  "Y1Z5A-B9C3D",
-  "G4H8I-J2K6L",
-  "P0Q4R-S8T2U",
-  "V5W9X-Y3Z7A",
-  "F3G7H-I1J5K",
-  "Z6A0B-C4D8E",
-  "T7U1V-W5X9Y",
-  "D0E4F-G8H2I",
-  "S1T5U-V9W3X",
-  "B4C8D-E2F6G",
-  "M3N7P-Q1R5S",
-  "H9I3J-K7L1M",
-  "O2P6Q-R0S4T",
-  "J0K4L-M8N2P",
-  "R7S1T-U5V9W",
-  "V3W7X-Y1Z5A",
-  "E6F0G-H4I8J",
-  "P9Q3R-S7T1U",
-  "L5M9N-P3Q7R",
-  "Y7Z1A-B5C9D",
-  "F0G4H-I8J2K",
-  "W8X2Y-Z6A0B",
-  "U4V8W-X2Y6Z",
-  "G9H3I-J7K1L",
-  "C5D9E-F3G7H",
-  "M1N5P-Q9R3S",
-  "K6L0M-N4P8Q",
-  "A4B8C-D2E6F",
-  "I7J1K-L5M9N",
-  "Z3A7B-C1D5E",
-  "R8S2T-U6V0W",
-  "O9P3Q-R7S1T",
-  "L4M8N-P2Q6R",
-  "B6C0D-E4F8G",
-  "V0W4X-Y8Z2A"
-];
+// --- DATABASE DE 40 CÓDIGOS ULTRA-DIFÍCEIS ---
+const codesDB = {
+    // 🎫 20 Códigos de CODIGUIN DO MÊS (Sufixos Aleatórios)
+    "ALISSON-C0D-X9F2-K88P": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-Z1B9-Q44W": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-L7V3-M00X": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-R5T1-B99S": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-H2N6-G33D": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-J8K4-P11A": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-U0M7-F66Y": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-D4S2-W88Z": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-G9T5-H22K": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-B3V1-R44N": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-P7Q9-L11X": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-X6M4-K55W": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-V0B2-J99Z": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-F4R8-N33S": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-H1W5-T77G": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-M9K2-Y44D": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-L0V3-X88P": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-S2R4-B11Q": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-Z7N9-W55F": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-K3J1-T66M": "Codiguin do Mês 🎫",
 
-// CÓDIGOS JÁ RESGATADOS (Esta lista é apagada quando o Render reinicia)
-let usedCodes = [];
+    // 💎 20 Códigos de PASSE BOOYAH (Sufixos Aleatórios)
+    "ALISSON-P55-E9R2-T00X": "Passe Booyah 💎",
+    "ALISSON-P55-Q7W1-L33B": "Passe Booyah 💎",
+    "ALISSON-P55-V4N8-K99Z": "Passe Booyah 💎",
+    "ALISSON-P55-B1M5-F22D": "Passe Booyah 💎",
+    "ALISSON-P55-G0S6-R77W": "Passe Booyah 💎",
+    "ALISSON-P55-X8J3-H44P": "Passe Booyah 💎",
+    "ALISSON-P55-T2V9-N11S": "Passe Booyah 💎",
+    "ALISSON-P55-K5L7-D88Q": "Passe Booyah 💎",
+    "ALISSON-P55-Y3B1-M66G": "Passe Booyah 💎",
+    "ALISSON-P55-P9F4-X22A": "Passe Booyah 💎",
+    "ALISSON-P55-W0R2-K77V": "Passe Booyah 💎",
+    "ALISSON-P55-L6N8-B33H": "Passe Booyah 💎",
+    "ALISSON-P55-M1S4-T55J": "Passe Booyah 💎",
+    "ALISSON-P55-D9V2-Z88K": "Passe Booyah 💎",
+    "ALISSON-P55-G4T7-F00N": "Passe Booyah 💎",
+    "ALISSON-P55-R2W5-Y33C": "Passe Booyah 💎",
+    "ALISSON-P55-K8L1-P44M": "Passe Booyah 💎",
+    "ALISSON-P55-U0B3-S99X": "Passe Booyah 💎",
+    "ALISSON-P55-Z7Q9-J11W": "Passe Booyah 💎",
+    "ALISSON-P55-X4M6-D22S": "Passe Booyah 💎"
+};
 
-// CÓDIGO DE ACESSO MESTRE (MANTENHA ISSO SECRETO!)
-const MASTER_CODE = "CODIGO998052"; 
+let usedCodesHistory = {}; 
 
-
-// --- ROTA PRINCIPAL DE LOGIN ---
-app.post('/api/login', (req, res) => {
+app.post('/api/validate', (req, res) => {
     const { code } = req.body;
+    const cleanCode = code ? code.trim().toUpperCase() : "";
     
-    // Adiciona o cabeçalho CORS para garantir a compatibilidade
-    res.setHeader('Access-Control-Allow-Origin', '*'); 
-    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    if (!codesDB[cleanCode]) return res.status(400).json({ success: false, message: 'CÓDIGO FALSO OU INVÁLIDO!' });
+    if (usedCodesHistory[cleanCode]) return res.status(400).json({ success: false, message: `ERRO: Já resgatado em ${usedCodesHistory[cleanCode].data}` });
 
-    // 1. CHECAGEM DE CÓDIGO VAZIO
-    if (!code) {
-        return res.status(400).json({ success: false, message: 'O código não pode estar vazio.' });
-    }
-
-    // 2. CHECAGEM DE CÓDIGO MESTRE
-    if (code === MASTER_CODE) {
-        // Não adiciona à lista de usados e não verifica uso anterior
-        console.log('[LOG] Acesso Mestre utilizado.');
-        return res.status(200).json({ success: true, message: 'Acesso Mestre Liberado! (Ignorando uso único)' });
-    }
-
-    // 3. CHECAGEM DE CÓDIGO INVÁLIDO
-    if (!validCodes.includes(code)) {
-        return res.status(400).json({ success: false, message: 'Código inválido ou não registrado.' });
-    }
-
-    // 4. CHECAGEM DE USO ÚNICO (Para códigos comuns)
-    if (usedCodes.includes(code)) {
-        return res.status(400).json({ success: false, message: 'Este código já foi resgatado e está indisponível.' });
-    }
-
-    // 5. SUCESSO E MARCAÇÃO DE USO
-    usedCodes.push(code); 
-    console.log(`[LOG] Novo código usado: ${code}`);
-
-    return res.status(200).json({ success: true, message: 'Código validado! Acesso Liberado.' });
+    res.json({ success: true, reward: codesDB[cleanCode] });
 });
 
-
-// --- ROTA DE HISTÓRICO ---
-app.get('/api/history', (req, res) => {
-    // Retorna a lista de códigos usados para o modal do Frontend
-    const historyData = usedCodes.map(code => ({ code: code }));
-    res.status(200).json({ history: historyData });
+app.post('/api/register', (req, res) => {
+    const { code, name, id } = req.body;
+    const cleanCode = code ? code.trim().toUpperCase() : "";
+    
+    usedCodesHistory[cleanCode] = {
+        user: name,
+        playerId: id,
+        data: new Date().toLocaleString('pt-BR')
+    };
+    res.json({ success: true });
 });
 
+app.get('/api/admin/history', (req, res) => res.json(usedCodesHistory));
 
-// ROTA DE TESTE (Health Check)
-app.get('/', (req, res) => {
-    res.send(`API de Resgate funcionando na porta ${PORT}. Total de códigos usados: ${usedCodes.length}`);
-});
-
-
-// Inicialização do Servidor
-app.listen(PORT, () => {
-    console.log(`Servidor rodando na porta ${PORT}`);
-});
-
-
-
-
+app.listen(3000, () => console.log(`🚀 API Rodando - Canal: ${OWNER_TAG}`));
