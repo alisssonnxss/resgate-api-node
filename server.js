@@ -23,13 +23,13 @@ const codesDB = {
     "ALISSON-C0D-M8V4-S99R": "Codiguin do Mês 🎫",
     "ALISSON-C0D-K6L2-N55T": "Codiguin do Mês 🎫",
     "ALISSON-C0D-U1B9-P33J": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-Z5N8-D77V": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-Q0M3-X44G": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-T4R6-Y22W": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-S9K1-B11M": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-R3V7-Z88Q": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-N2H5-L00F": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-D6W9-P22K": "Codiguin do Mês 🎫",
+    "TITANOFC-C0D-Z5N8-D77V": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-Q0M3-X44G": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-T4R6-Y22W": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-S9K1-B11M": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-R3V7-Z88Q": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-N2H5-L00F": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-D6W9-P22K": "Passe Do Titan🎫",
 
     // Passe Booyah (20 novos códigos)
     "ALISSON-P55-H4N1-W88X": "Passe Booyah 💎",
@@ -92,4 +92,5 @@ app.get('/api/reset/:tag', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
