@@ -9,50 +9,52 @@ app.use(bodyParser.json());
 const OWNER_TAG = "4L1550NX-X792-B488"; 
 
 const codesDB = {
-    // Codiguin do Mês (20 novos códigos)
-    "ALISSON-C0D-H7X1-K22P": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-W4R9-M11N": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-B2V6-T55S": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-L9N3-Q88D": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-J1K8-Y44Z": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-F5S2-G00X": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-P3M7-W66B": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-V0R4-K99L": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-X7T5-H33C": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-G2W1-F11A": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-M8V4-S99R": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-K6L2-N55T": "Codiguin do Mês 🎫",
-    "ALISSON-C0D-U1B9-P33J": "Codiguin do Mês 🎫",
-    "TITANOFC-C0D-Z5N8-D77V": "Passe Do Titan 🎫",
-    "TITANOFC-C0D-Q0M3-X44G": "Passe Do Titan 🎫",
-    "TITANOFC-C0D-T4R6-Y22W": "Passe Do Titan 🎫",
-    "TITANOFC-C0D-S9K1-B11M": "Passe Do Titan 🎫",
-    "TITANOFC-C0D-R3V7-Z88Q": "Passe Do Titan 🎫",
-    "TITANOFC-C0D-N2H5-L00F": "Passe Do Titan 🎫",
-    "TITANOFC-C0D-D6W9-P22K": "Passe Do Titan🎫",
+    // Codiguin do Mês (Renovados)
+    "ALISSON-C0D-R8K2-X11N": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-M5V9-Z44P": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-B3S7-W88D": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-L0N6-Q22C": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-J4H1-G55B": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-F9X2-Y00M": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-P1K8-V66R": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-V7R3-S99L": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-X2M5-H44T": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-G8W0-F11K": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-M3N4-P99J": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-K7V2-D55X": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-U9B1-L33S": "Codiguin do Mês 🎫",
+    "TITANOFC-C0D-Z2R8-X77W": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-Q5M3-N44G": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-T1K6-V22P": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-S8N1-B11L": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-R4V7-Z88K": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-N0H5-M00D": "Passe Do Titan 🎫",
+    "TITANOFC-C0D-D3W9-S22R": "Passe Do Titan 🎫",
 
-    // Passe Booyah (20 novos códigos)
-    "ALISSON-P55-H4N1-W88X": "Passe Booyah 💎",
-    "ALISSON-P55-R7K9-T33V": "Passe Booyah 💎",
-    "ALISSON-P55-M0S2-L66B": "Passe Booyah 💎",
-    "ALISSON-P55-Z5V4-P11D": "Passe Booyah 💎",
-    "ALISSON-P55-G9Q3-N77K": "Passe Booyah 💎",
-    "ALISSON-P55-L1J8-F44S": "Passe Booyah 💎",
-    "ALISSON-P55-Y3B6-G99M": "Passe Booyah 💎",
-    "ALISSON-P55-W5R2-X00P": "Passe Booyah 💎",
-    "ALISSON-P55-D7N5-C22Q": "Passe Booyah 💎",
-    "ALISSON-P55-K2M9-T88Z": "Passe Booyah 💎",
-    "ALISSON-P55-V4S1-H55W": "Passe Booyah 💎",
-    "ALISSON-P55-B8L6-R33N": "Passe Booyah 💎",
-    "ALISSON-P55-T0X3-P44J": "Passe Booyah 💎",
-    "ALISSON-P55-U6W2-Y11G": "Passe Booyah 💎",
-    "ALISSON-P55-N9V7-M55C": "Passe Booyah 💎",
-    "ALISSON-P55-J1K4-B77H": "Passe Booyah 💎",
-    "ALISSON-P55-S5R8-D99A": "Passe Booyah 💎",
-    "ALISSON-P55-E2M0-K33L": "Passe Booyah 💎",
-    "ALISSON-P55-F6G1-Z22X": "Passe Booyah 💎",
-    "ALISSON-P55-Q4N9-W00S": "Passe Booyah 💎"
-    "ITALOFF-P55-Q4N9-W00S": "PACK DE OTIMIZAÇÃO 💎"
+    // Passe Booyah (Renovados)
+    "ALISSON-P55-H2K1-W88V": "Passe Booyah 💎",
+    "ALISSON-P55-R5N9-T33X": "Passe Booyah 💎",
+    "ALISSON-P55-M1S2-L66D": "Passe Booyah 💎",
+    "ALISSON-P55-Z7V4-P11B": "Passe Booyah 💎",
+    "ALISSON-P55-G0Q3-N77M": "Passe Booyah 💎",
+    "ALISSON-P55-L4J8-F44K": "Passe Booyah 💎",
+    "ALISSON-P55-Y1B6-G99S": "Passe Booyah 💎",
+    "ALISSON-P55-W8R2-X00Z": "Passe Booyah 💎",
+    "ALISSON-P55-D3N5-C22H": "Passe Booyah 💎",
+    "ALISSON-P55-K9M9-T88L": "Passe Booyah 💎",
+    "ALISSON-P55-V1S1-H55G": "Passe Booyah 💎",
+    "ALISSON-P55-B2L6-R33P": "Passe Booyah 💎",
+    "ALISSON-P55-T7X3-P44M": "Passe Booyah 💎",
+    "ALISSON-P55-U4W2-Y11N": "Passe Booyah 💎",
+    "ALISSON-P55-N0V7-M55K": "Passe Booyah 💎",
+    "ALISSON-P55-J3K4-B77D": "Passe Booyah 💎",
+    "ALISSON-P55-S1R8-D99X": "Passe Booyah 💎",
+    "ALISSON-P55-E6M0-K33V": "Passe Booyah 💎",
+    "ALISSON-P55-F2G1-Z22B": "Passe Booyah 💎",
+    "ALISSON-P55-Q9N9-W00L": "Passe Booyah 💎",
+    
+    // Extras (Renovados)
+    "ITALOFF-P55-K4X1-Z99S": "PACK DE OTIMIZAÇÃO 💎"
 };
 let usedCodesHistory = [];
 
@@ -95,4 +97,5 @@ app.get('/api/reset/:tag', (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
+
 
