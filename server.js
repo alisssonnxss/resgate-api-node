@@ -10,7 +10,7 @@ const OWNER_TAG = "4L1550NX-X792-B488";
 
 const codesDB = {
     // Codiguin do Mês (Renovados)
-    "ALISSON-C0D-R8K2-X11N": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-R8K2-X11N": "Uma foice molada 🎫",
     "ALISSON-C0D-M5V9-Z44P": "Codiguin do Mês 🎫",
     "ALISSON-C0D-B3S7-W88D": "Codiguin do Mês 🎫",
     "ALISSON-C0D-L0N6-Q22C": "Codiguin do Mês 🎫",
@@ -97,5 +97,6 @@ app.get('/api/reset/:tag', (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
+
 
 
