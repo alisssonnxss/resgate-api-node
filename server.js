@@ -51,7 +51,7 @@ const codesDB = {
     "ALISSON-P55-S1R8-D99X": "Passe Booyah 💎",
     "ALISSON-P55-E6M0-K33V": "Passe Booyah 💎",
     "ALISSON-P55-F2G1-Z22B": "Passe Booyah 💎",
-    "ALISSON-P55-Q9N9-W00L": "Passe Booyah 💎",
+    "Julio-P55-Q9N9-W00L": "Passe do julio 💎",
     
     // Extras (Renovados)
     "ITALOFF-P55-K4X1-Z99S": "PACK DE OTIMIZAÇÃO 💎"
@@ -97,6 +97,7 @@ app.get('/api/reset/:tag', (req, res) => {
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log(`Rodando na porta ${PORT}`));
+
 
 
 
