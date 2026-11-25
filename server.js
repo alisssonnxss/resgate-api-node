@@ -19,7 +19,7 @@ const codesDB = {
     "TESTE03": "CODIGUIN",
     "TESTE04": "CODIGUIN",
     "ALISSON-C0D-R8K2-X11N": "Uma foice molada 🎫",
-    "ALISSON-C0D-M5V9-Z44P": "Codiguin do Mês 🎫",
+    "ALISSON-C0D-M5V9-Z44P": "UMA FOICE BEM MOLADA 🎫",
     "ALISSON-C0D-B3S7-W88D": "Codiguin do Mês 🎫",
     "ALISSON-C0D-L0N6-Q22C": "Codiguin do Mês 🎫",
     "ALISSON-C0D-J4H1-G55B": "Codiguin do Mês 🎫",
