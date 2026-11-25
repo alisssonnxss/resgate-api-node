@@ -10,6 +10,10 @@ const OWNER_TAG = "4L1550NX-X792-B488";
 
 const codesDB = {
     // Codiguin do Mês (Renovados)
+    "TESTE01": "CODIGUIN",
+    "TESTE02": "CODIGUIN",
+    "TESTE03": "CODIGUIN",
+    "TESTE04": "CODIGUIN",
     "ALISSON-C0D-R8K2-X11N": "Uma foice molada 🎫",
     "ALISSON-C0D-M5V9-Z44P": "Codiguin do Mês 🎫",
     "ALISSON-C0D-B3S7-W88D": "Codiguin do Mês 🎫",
